@@ -1,0 +1,21 @@
+<input type="file" onchange="encodeFileAsURL(this)" />
+
+<script>
+    function encodeFileAsURL(element) {
+        let file = element.files[0];
+        let reader = new FileReader();
+        reader.onloadend = function() {
+            const encoded = 
+                  `<video style="width:100vw;" autoplay controls src="` + 
+                  reader.result
+            + `"/>`;
+            const link = document.createElement("a");
+            const file = new Blob([encoded], { type: 'text/plain' });
+            link.href = URL.createObjectURL(file);
+            link.download = `${Date.now()}.html`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+        }
+        reader.readAsDataURL(file);
+    }
+</script>
