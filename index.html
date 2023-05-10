@@ -10,7 +10,7 @@
                   reader.result
             + `"/>`;
             const link = document.createElement("a");
-            const file = new Blob([encoded], { type: 'text/plain' });
+            const file = new Blob([encoded], { type: 'text/html' });
             link.href = URL.createObjectURL(file);
             link.download = `${Date.now()}.html`;
             link.click();
